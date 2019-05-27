@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add a dojo</title>
+
+    <style>
+        .alert-danger{
+            color: red;
+            font-family: 'Courier New', Courier, monospace;
+            size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Please add a Dojo</h1>
+            
+        <form action="#" th:action="@{/dojo/new}" th:object="${dojoObj}" method="post">
+            <div class="alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
+            </div>
+        
+            <table border="1">
+                <tr>
+                    <td><label th:text="Name" /></td>
+                    <td><input type="text" th:field="*{name}" /></td>
+                </tr>
+                
+            </table>
+            
+            <p><input type="submit" value="Submit" /></p>
+        </form>
+    </div>
+    
+
+
+
+
+
+</body>
+</html>

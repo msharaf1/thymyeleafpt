@@ -14,9 +14,9 @@ public class Ninja {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min=1, max=255, message = "Please type a valid firstName")
+    @Size(min=1, max=255, message = "Please type a valid First Name")
     private String firstName;
-    @Size(min=1, max=255, message = "Please type a valid latName")
+    @Size(min=1, max=255, message = "Please type a valid Last Name")
     private String lastName;
 
     @Min(1)

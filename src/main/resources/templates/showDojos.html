@@ -14,22 +14,27 @@
                     <th>Dojo ID: </th>
                     <th>Dojo Location: </th>
                     <th>Action</th>
+                    <th>Registered Ninja</th>
                 </thead>
             <tr th:each="dojo: ${dojoList}">
                     <td th:text="${dojo.id}" />
-                    <td th:text="${dojo.name}" />
+                    <!-- <td th:text="${dojo.name}" /> -->
+                    <td> <a th:href="@{/dojo/{id}(id=${dojo.id})}" th:text="${dojo.name}"></td>
                     <td>
                         <form action="#" th:action="@{'/deletedojo/{id}'(id=${dojo.id})}" th:method="delete" >
                             <input type="hidden" name="_method" value="delete" />
                             <button type="submit" value="delete">Delete </button>
                         </form>
                     </td>      
+                    <!-- <td> <a th:href="@{/dojo/{id}(id=${dojo.id})}" th:text="${dojo.name}"></td> -->
+                    
             </tr>
             </table>
 
 
 
-        <a href="/dojo/new">Add a dojo</a>
+        <a href="/addninja">Add a dojo</a>
+        <a th:href="@{/dojohome}">Dojo Home</a>
     </div>
 
 </body>

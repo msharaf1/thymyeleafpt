@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class DojoController {
@@ -51,9 +53,6 @@ public class DojoController {
         model.addAttribute("dojoObj", new Dojo());
         return "newDojo";
     }
-
-
-
     @PostMapping("/dojo/new")
     public String addDojo(@Valid @ModelAttribute("dojoObj") Dojo dojo, BindingResult result){
         if(result.hasErrors()){
@@ -65,20 +64,38 @@ public class DojoController {
     }
 
     @DeleteMapping("/deletedojo/{id}")
-    // public String deleteDojo(@Valid @ModelAttribute("dojoObj") Dojo dojo, BindingResult result){
         public String deleteDojo(@PathVariable("id") Long id){
-    //         Optional<Dojo> dojoById = dojoService.findDojoById(id);
-    //         if(dojoById != null){
-    //             dojoService.deleteDojo(id);
-    //             return "redirect:/dojoHome";
-    //         }else {
-    //             model.addAttribute("error", "The entered ID doesn't exist");
-    //             return "redirect:/dojoHome";
-    //         }
             dojoService.deleteDojo(id);
-            return "redirect:/dojohome";
-    
+            return "redirect:/dojohome";   
 }
+
+    @GetMapping("/dojo/{id}")
+    public String getDojoNinja(@PathVariable("id") Long id, Model model) {
+        Optional<Dojo> dojo = dojoService.findDojoById(id);
+        model.addAttribute("dojoName", dojo.get().getName());
+
+        System.out.println(dojo.get().getName());
+        
+        
+        List<Ninja> dojoNij = dojo.get().getNinjaList();
+        model.addAttribute("dojoNinjList", dojoNij);
+        
+
+        
+        for(int i =0; i < dojoNij.size(); i++){
+            System.out.println(dojoNij.get(i).getFirstName());
+            System.out.println(dojoNij.get(i).getId());
+        }
+        
+
+        
+
+
+
+
+        return "displayDN";
+    }
+    
 
 
 }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>New Ninja</title>
+</head>
+<body>
+        <div class="container">
+            <h1>Please add a Ninja</h1>
+            <table>
+                    <thead>
+                        <th>Ninja ID: </th>
+                        <th>First Name: </th>
+                        <th>Last Name: </th>
+                        <th>Age: </th>
+                        <th>RelationID</th>
+                        <th>Location</th>
+                        <th>Action</th>
+                    </thead>
+                <tr th:each="ninja: ${ninjaList}">
+                        <td th:text="${ninja.id}" />
+                        <td th:text="${ninja.firstName}" />
+                        <td th:text="${ninja.lastName}" />
+                        <td th:text="${ninja.age}" />
+                        <td th:text="${ninja.dojo.id}" />
+                        <td th:text="${ninja.dojo.name}" />
+                        <td>
+                            <form action="#" th:action="@{'/delete/{id}'(id=${ninja.id})}" th:method="delete" >
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" value="delete">Delete </button>
+                            </form>
+                        </td>      
+                </tr>
+                </table>
+  
+
+
+            <form action="#" th:action="@{/addninja}" th:object="${ninjaObj}" method="POST">
+                <div class="alert-danger" th:if="${#fields.hasErrors('*')}">
+                        <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>    
+                </div>
+
+                <table>
+                    <tr>
+                                <select th:field="*{dojo.id}">
+                                <option
+                                            th:each="dojo : ${dojoList}"
+                                            th:value="${dojo.id}"
+                                            th:text="${dojo.name}"
+                                    />
+                                </select>
+                        
+                    </tr>
+
+                    <tr>
+                        <td>First Name: <input type="text" th:field="*{firstName}" /></td>
+                    </tr>
+                    <tr>
+                        <td>Last Name: <input type="text" th:field="*{lastName}" /></td>
+                    </tr>
+                    <tr>
+                            <td>Age: <input type="number" th:field="*{age}" /></td>
+                    </tr>    
+                    
+                </table>
+                
+                <p><input type="submit" value="Submit" /></p>
+           
+
+                
+            </form>
+            <a th:href="@{/dojohome}">Dojo Home</a>
+        </div>
+        
+</body>
+</html>

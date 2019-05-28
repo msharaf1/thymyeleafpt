@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Dojo</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome Ninja!</h1>
+        <!-- <h1><p th:text="'Hello, ' + ${name} + '!'" /></h1> -->
+
+            <table>
+                <thead>
+                    <th>Ninja ID: </th>
+                    <th>First Name: </th>
+                    <th>Last Name: </th>
+                    <th>Age: </th>
+                    <th>Action</th>
+                </thead>
+            <tr th:each="ninja: ${ninjaList}">
+                    <td th:text="${ninja.id}" />
+                    <td th:text="${ninja.firstName}" />
+                    <td th:text="${ninja.lastName}" />
+                    <td th:text="${ninja.age}" />
+                    <td>
+                        <form action="#" th:action="@{'/delete/{id}'(id=${ninja.id})}" th:method="delete" >
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" value="delete">Delete </button>
+                        </form>
+                    </td>      
+            </tr>
+            </table>
+
+
+
+        <a href="/ninja/new">Add a Ninja</a>
+    </div>
+
+</body>
+</html>

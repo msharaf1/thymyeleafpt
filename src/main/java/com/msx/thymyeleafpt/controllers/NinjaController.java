@@ -33,6 +33,7 @@ public class NinjaController {
     public String showAllNinjas(Model model){
         List<Ninja> ninjaList = ninjaService.showAllNinja();
         model.addAttribute("ninjaList", ninjaList);
+        
         return "showNinja";
     }
     
@@ -70,7 +71,8 @@ public class NinjaController {
     @PostMapping("/addninja")
     public String addNinja(@Valid @ModelAttribute("ninjaObj") Ninja ninja, BindingResult result){
         if(result.hasErrors()){
-            return "newNinja";
+            return "redirect:/addninja";
+            // return "addNinja";
         }else{
             ninjaService.addNinja(ninja);
             return "redirect:/addninja";

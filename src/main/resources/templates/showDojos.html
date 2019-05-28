@@ -8,7 +8,7 @@
     <div class="container">
         <h1>Welcome Dojo!</h1>
         <!-- <h1><p th:text="'Hello, ' + ${name} + '!'" /></h1> -->
-
+        <p th:text="${numberOfEnrooledStudent}"></p>
             <table>
                 <thead>
                     <th>Dojo ID: </th>
@@ -27,6 +27,9 @@
                         </form>
                     </td>      
                     <!-- <td> <a th:href="@{/dojo/{id}(id=${dojo.id})}" th:text="${dojo.name}"></td> -->
+                    <!-- <td th:text="${dojosN} +' Number of Enrolled Students:  '+ ${ninjas}" /> -->
+                    
+                    
                     
             </tr>
             </table>

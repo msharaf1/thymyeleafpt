@@ -21,6 +21,6 @@ public interface DojoRepository extends CrudRepository<Dojo, Long> {
     @Override
     void delete(Dojo dojo);
 
-    @Override
+    
     long count();
 }

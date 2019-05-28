@@ -36,5 +36,8 @@ public class DojoService {
     public void deleteDojo(Long id){
         dojoRepo.deleteById(id);
     }
+    public long getCount(){
+        return dojoRepo.count();
+    }
 
 }

@@ -35,8 +35,20 @@ public class DojoController {
     @GetMapping("/dojohome")
     public String showHome(Model model){
         List<Dojo> dojoList = dojoService.findAllDojos();
+        
+        long dojosN = dojoService.getCount();
+        long ninjas = ninjaService.getCount();
+        model.addAttribute("dojosN", dojosN);
+        model.addAttribute("ninjas", ninjas);
+        System.out.println("dojosN: "+ dojosN +" Ninjas: "+ ninjas);
+
+
         model.addAttribute("dojoList", dojoList);
+        dojoList.size();
+        
         // model.addAttribute("name", dojoList.get(0).getName());
+
+        
         return "showDojos";
     }
 
@@ -79,13 +91,16 @@ public class DojoController {
         
         List<Ninja> dojoNij = dojo.get().getNinjaList();
         model.addAttribute("dojoNinjList", dojoNij);
+        long count = dojoNij.size();
+        model.addAttribute("numberOfEnrooledStudent", count);
+        // System.out.println(count);
         
 
         
-        for(int i =0; i < dojoNij.size(); i++){
-            System.out.println(dojoNij.get(i).getFirstName());
-            System.out.println(dojoNij.get(i).getId());
-        }
+        // for(int i =0; i < dojoNij.size(); i++){
+        //     System.out.println(dojoNij.get(i).getFirstName());
+        //     System.out.println(dojoNij.get(i).getId());
+        // }
         
 
         

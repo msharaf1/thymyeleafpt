@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface NinjaRepository extends CrudRepository<Ninja, Long> {
     List<Ninja> findAll();
     Optional<Ninja> findById(Long id);
+    long count();
 }

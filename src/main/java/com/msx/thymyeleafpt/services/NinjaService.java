@@ -34,4 +34,7 @@ public class NinjaService {
     public void deleteByIdNinja(Long id){
         ninjaRepo.deleteById(id);
     }
+    public long getCount(){
+        return ninjaRepo.count();
+    }
 }
